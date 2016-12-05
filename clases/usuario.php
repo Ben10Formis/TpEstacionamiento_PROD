@@ -26,10 +26,13 @@ class usuario
 	public static function VerificarMailUsuario($mail) 
 	{
 			$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-			$consulta =$objetoAccesoDato->RetornarConsulta("select count(id) as cantidad from usuario where mail = $mail");
+			$consulta =$objetoAccesoDato->RetornarConsulta("select id, mail as mail , clave as clave, tipo as tipo from usuario where mail = :mail");
+			$consulta->bindValue(':mail',$mail, PDO::PARAM_STR);	
 			$consulta->execute();
-			$usuarioBuscado= $consulta->fetchObject('usuario');
-			return $usuarioBuscado;			
+			//$usuarioBuscado= $consulta->RetornarConsulta('cantidad');
+			//$usuarioBuscado= $consulta->fetchObject('usuario');
+			$fila = $consulta->fetchAll(PDO::FETCH_CLASS, "usuario");
+			return $fila;			
 	}	
 
 	public static  function BorrarUsuario()

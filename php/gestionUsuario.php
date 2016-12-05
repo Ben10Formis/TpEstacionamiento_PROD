@@ -71,7 +71,7 @@
 		$usuario->tipo = 'user';
 		$cantidad = $usuario->VerificarMailUsuario($usuario->mail);
 
-		if($cantidad == 0){
+		if(count($cantidad) == 0){
 		
 			$respuesta = $usuario->GuardarUsuario();
 
