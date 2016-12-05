@@ -1,5 +1,5 @@
 
-      <form method="post" id="frmIngreso">
+      <form method="post" id="frmAltaEstacionado">
        <h1 >Ingrese Patente</h1>
         <div class="inset">
        		<p>

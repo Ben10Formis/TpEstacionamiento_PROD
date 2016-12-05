@@ -31,7 +31,7 @@ function eliminarAuto(autoAux){
 
 	})
 	.fail(function (jqXHR, textStatus, errorThrown) {
-		//alert("error en eliminarAuto de funcionesABMAutos");
+		alert("error en eliminarAuto de funcionesABMAutos");
         alert(jqXHR.responseText + "\n" + textStatus + "\n" + errorThrown);
     });      
 	
@@ -41,6 +41,7 @@ function guardarAuto(){
 
 	var patenteAux = $('#patente').val();
 	patenteAux = patenteAux.trim();
+	patenteAux = patenteAux.toUpperCase();
 	if(patenteAux != ""){
 		alert("AGREGANDO AUTO CON PATENTE: " + patenteAux);
 	

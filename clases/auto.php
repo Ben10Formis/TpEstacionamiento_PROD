@@ -64,7 +64,7 @@ function resta($inicio, $fin)
   	public static function TraerTodosLosAutos()
 	{
 		$objetoAccesoDato = AccesoDatos::dameUnObjetoAcceso(); 
-		$consulta =$objetoAccesoDato->RetornarConsulta("select id,patente as patente, ingreso as ingreso from autos");
+		$consulta =$objetoAccesoDato->RetornarConsulta("select id,patente as patente, ingreso as ingreso from autos order by id desc ");
 		$consulta->execute();			
 		return $consulta->fetchAll(PDO::FETCH_CLASS, "auto");		
 	}

@@ -3,9 +3,9 @@ function iniciar()
 	var funcionAjax=$.ajax({
 		url:"nexoAdministracion.php",
 		type:"post",
-		data:{queHacer:"iniciar"}
-	});
-	funcionAjax.done(function(retorno)
+		data:{queHacer:"iniciar"},
+	
+	 }).then(function (retorno)
 	{
 		//alert(retorno);
 		//console.log(retorno);
@@ -24,15 +24,11 @@ function iniciar()
 			//mostrarAltaEstacionado();
 			//mostrarGrillaEstacionados();
 		}
-
-	});
-	funcionAjax.fail(function(retorno){
+	},function (retorno) {
+	//funcionAjax.fail(function(retorno){
 		$("#botonesABM").html(":( error iniciar");
 		$("#informe").html(retorno.responseText);	
 		//alert("Salio por error de la funcion iniciar");
-	});
-	funcionAjax.always(function(retorno){
-		
 	});
 }
 
@@ -42,19 +38,14 @@ function mostrarLogin(){
 	url:"nexoAdministracion.php",
 	type:"post",
 	data:{queHacer:"mostrarLogin"}
-	});
-	funcionAjax.done(function(retorno){
+	}).then(function (retorno)
+	{
 		//alert("funcion mostrarLogin cargo html de frmlogin.php");
 		$("#divIzquierda").html(retorno);
-	});
-	funcionAjax.fail(function(retorno){
+	},function (retorno) {
 		$("#botonesABM").html(":( error mostrarLogin");
 		$("#informe").html(retorno.responseText);	
-	});
-	funcionAjax.always(function(retorno){
-		
-	});
-	
+	});	
 }
 
 function logout(){
@@ -62,20 +53,16 @@ function logout(){
 		url:"nexoAdministracion.php",
 		type:"post",
 		data:{queHacer:"deslogear"}
-	});
-	funcionAjax.done(function(retorno){
+	 }).then(function (retorno)
+	{
 		$('#BotonLogOut').attr('hidden','');
 		$('#BotonLogin').removeAttr('hidden');
 		$('#mailUsrLogeado').html('-');
 		$("#divDerecha").html("");
 		iniciar();
-	});
-	funcionAjax.fail(function(retorno){
+	},function (retorno) {
 		$("#botonesABM").html(":( error logout");
 		$("#informe").html(retorno.responseText);	
-	});
-	funcionAjax.always(function(retorno){
-		
 	});
 }
 
@@ -85,18 +72,17 @@ function mostrarGrillaEstacionados(){
 		url:"nexoAdministracion.php",
 		type:"post",
 		data:{queHacer:"mostrarGrillaEstacionados"}
-	});
-	funcionAjax.done(function(retorno){
+	 }).then(function (retorno)
+	{
 		//if(retorno != "NO-LOGEADO"){
 		if(retorno != false){
 			$("#divDerecha").html(retorno);
+			mostrarAltaEstacionado();
 		}else{
-			alert("PARA UTILIZAR ESTA FUNCION DEBE ESTAR LOGEADO!");
+			alert("PARA UTILIZAR ESTA FUNCIONALIDAD DEBE ESTAR LOGEADO!");
 		}
-		
-	});
-	funcionAjax.fail(function(retorno){
-		$("#botonesABM").html(":( mostrarGrillaEstacionados");
+	},function (retorno) {
+		//$("#botonesABM").html(":( mostrarGrillaEstacionados");
 		$("#informe").html(retorno.responseText);	
 	});
 	
@@ -108,18 +94,16 @@ function mostrarAltaEstacionado(){
 		url:"nexoAdministracion.php",
 		type:"post",
 		data:{queHacer:"mostrarAltaEstacionado"}
-	});
-	funcionAjax.done(function(retorno){
+	 }).then(function (retorno)
+	{
 		//if(retorno != "NO-LOGEADO"){
 		if(retorno != false){
 			$("#divIzquierda").html(retorno);
 			//alert("Estoy en funcion mostrarAltaEstacionado y esta logeado");
 		}else{
-			alert("PARA UTILIZAR ESTA FUNCION DEBE ESTAR LOGEADO!");
-		}
-		
-	});
-	funcionAjax.fail(function(retorno){
+			alert("PARA UTILIZAR ESTA FUNCIONALIDAD DEBE ESTAR LOGEADO!");
+		}		
+	},function (retorno) {
 		$("#botonesABM").html(":( mostrarAltaEstacionado");
 		$("#informe").html(retorno.responseText);	
 	});
@@ -131,17 +115,17 @@ function mostrarGrillaUsuarios(){
 		url:"nexoAdministracion.php",
 		type:"post",
 		data:{queHacer:"mostrarGrillaUsuarios"}
-	});
-	funcionAjax.done(function(retorno){
+	 }).then(function (retorno)
+	{
 		//if(retorno != "NO-ADMIN"){
 		if(retorno != false){
-			$("#divDerecha").html(retorno);		
+			$("#divDerecha").html(retorno);
+			$("#divIzquierda").html("-");
 		}else{
 			alert("USTED NO ES UN ADMINISTRADOR!!");
 		}
 		
-	});
-	funcionAjax.fail(function(retorno){
+	},function (retorno) {
 		$("#botonesABM").html(":( mostrarGrillaUsuarios");
 		$("#informe").html(retorno.responseText);	
 	});
@@ -153,17 +137,15 @@ function mostrarGrillaImportes(){
 	url:"nexoAdministracion.php",
 	type:"post",
 	data:{queHacer:"mostrarGrillaImportes"}
-	});
-	funcionAjax.done(function(retorno){
+	 }).then(function (retorno)
+	{
 		//if(retorno != "NO-ADMIN"){
 		if(retorno != false){
 			$("#divDerecha").html(retorno);		
 		}else{
 			alert("USTED NO ES UN ADMINISTRADOR!!");
 		}
-		
-	});
-	funcionAjax.fail(function(retorno){
+	},function (retorno) {
 		$("#botonesABM").html(":( mostrarGrillaImportes");
 		$("#informe").html(retorno.responseText);	
 	});
@@ -175,17 +157,16 @@ function mostrarInforme(){
 	url:"nexoAdministracion.php",
 	type:"post",
 	data:{queHacer:"mostrarInforme"}
-	});
-	funcionAjax.done(function(retorno){
+	 }).then(function (retorno)
+	{
 		//if(retorno != "NO-ADMIN"){
 		if(retorno != false){
-			$("#divDerecha").html(retorno);		
+			$("#divDerecha").html(retorno);	
+			$("#divIzquierda").html("-");	
 		}else{
 			alert("USTED NO ES UN ADMINISTRADOR!!");
 		}
-		
-	});
-	funcionAjax.fail(function(retorno){
+	},function (retorno) {
 		$("#botonesABM").html(":( mostrarInforme");
 		$("#informe").html(retorno.responseText);	
 	});

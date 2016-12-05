@@ -17,6 +17,7 @@ function ejecutarAccion(seQuiereRegistrar){
 
 		passwordAux = $("#clave").val();
 		mailAux = $("#mail").val();
+		mailAux = mailAux.toLowerCase();
 		recordarAux = $('#remember').is(':checked');
 
 		var funcionAjax =$.ajax ({
